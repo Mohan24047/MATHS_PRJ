@@ -19,7 +19,7 @@ An intelligent computer vision system that simulates an autonomous robot. Using 
 
 ### 1. The "Lock-On" Logic
 
-The robot chooses its primary target using a specific score calculation to ensure it doesn't get distracted by small background objects: 
+The robot chooses its primary target using a specific score calculation to ensure it doesn't get distracted by small background objects:                                     
               **Score = Area/(Distance_from_center + 1)**
 
 This formula ensures that an object twice as large as another is prioritized, but only if it is also relatively centered in the robot's field of view.
