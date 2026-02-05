@@ -1,7 +1,3 @@
-Here is a clean, professional `README.md` file tailored for your project. It highlights the "Robot" persona and the technical stack used.
-
----
-
 # 🤖 Autonomous Cartoonifying Robot
 
 An AI-powered computer vision project that simulates an autonomous robot. It scans for objects using **YOLOv8**, identifies the most "relevant" target based on size and proximity to the center, and "captures" it by applying a custom cartoonization filter.
@@ -47,7 +43,7 @@ The code will automatically download `yolov8n.pt` on the first run.
 Run the main script to start the robot's "viewfinder":
 
 ```bash
-python main.py
+python robot_main.py
 
 ```
 
@@ -66,20 +62,4 @@ The robot uses a scoring algorithm to choose its target:
 
 This ensures that the robot ignores background noise and focuses on the subject directly in front of it.
 
-## 📝 License
 
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-### Contributing
-
-Feel free to fork this project and add features like:
-
-* Moving the camera/gimbal via Arduino.
-* Adding voice lines using Text-to-Speech.
-* Different artistic filters (Sketch, Oil Painting, etc.).
-
----
-
-Would you like me to add a section on how to fine-tune the cartoon filters to make them look more like a "pencil sketch" instead?
