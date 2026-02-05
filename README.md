@@ -58,7 +58,7 @@ python robot_main.py
 
 ## 🧪 Technical Logic
 
-The robot uses a scoring algorithm to choose its target: Score = Area/(Distance from center + 1)
+The robot uses a scoring algorithm to choose its target: **Score = Area/(Distance from center + 1)**
 
 This ensures that the robot ignores background noise and focuses on the subject directly in front of it.
 
