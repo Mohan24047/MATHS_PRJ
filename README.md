@@ -1,65 +1,76 @@
-# 🤖 Autonomous Cartoonifying Robot
+# 🤖 Autonomous Target-Locking Cartoon Robot
 
-An AI-powered computer vision project that simulates an autonomous robot. It scans for objects using **YOLOv8**, identifies the most "relevant" target based on size and proximity to the center, and "captures" it by applying a custom cartoonization filter.
+An intelligent computer vision system that simulates an autonomous robot. Using **YOLOv8** and **OpenCV**, the robot scans the environment, identifies a priority target based on a center-weighted scoring algorithm, and applies a multi-stage **K-Means Clustering** cartoon filter to the captured subject.
 
-## 🚀 Features
+## 🌟 Features
 
-* **Real-time Object Detection:** Uses the YOLOv8 (Nano) model for high-speed tracking.
-* **Target Locking System:** Calculates a "priority score" to lock onto the largest, most centered object in the frame.
-* **Cartoonify Pipeline:**
-* **Bilateral Filtering:** Smooths textures while keeping edges sharp.
-* **K-Means Clustering:** Reduces the color palette for a flat, "painted" look.
-* **Adaptive Thresholding:** Generates hand-drawn style outlines.
+* **Dynamic Target Selection:** Uses a mathematical scoring system to "lock" onto the most relevant object (prioritizing size and proximity to center).
+* **Neural Network Integration:** Powered by **YOLOv8** for real-time, multi-class object detection.
+* **Artistic Image Pipeline:** * **Bilateral Filtering:** For edge-preserving noise reduction.
+* **K-Means Quantization:** Reduces image color depth for a "flat" painted aesthetic.
+* **Adaptive Thresholding:** Generates high-contrast ink outlines.
 
 
-* **Auto-Capture Timer:** A 5-second countdown to "lock and process" the target.
+* **Interactive HUD:** Real-time visual feedback with scanning boxes, locking indicators, and an auto-capture countdown.
 
 ---
 
-## 🛠️ Installation
+## 🛠️ Technical Deep Dive
 
-1. **Clone the repository:**
+### 1. The "Lock-On" Logic
+
+The robot chooses its primary target using a specific score calculation to ensure it doesn't get distracted by small background objects:  **Score = Area/(Distance_from_center + 1)**
+
+This formula ensures that an object twice as large as another is prioritized, but only if it is also relatively centered in the robot's field of view.
+
+### 2. The Cartoonify Pipeline
+
+The `cartoonify(img)` function follows a sophisticated computer vision workflow:
+
+1. **Saturation Boost:** Converts to HSV space to increase color vibrancy.
+2. **Smoothing:** Uses a Bilateral Filter to flatten textures while keeping boundaries sharp.
+3. **Quantization:** Uses **K-Means Clustering** () to group pixels into a limited palette.
+4. **Edge Masking:** Applies an adaptive mean threshold to create the "comic book" outlines.
+5. **Composition:** Merges the quantized colors with the edge mask.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+* Python 3.8+
+* Webcam
+
+### Installation
+
+1. **Clone the repo**
 ```bash
-git clone https://github.com/yourusername/autonomous-cartoon-robot.git
-cd autonomous-cartoon-robot
+git clone https://github.com/Mohan24047/MATHS_PRJ.git
+cd MATHS_PRJ
 
 ```
 
 
-2. **Install dependencies:**
+2. **Install Dependencies**
 ```bash
 pip install opencv-python numpy ultralytics
 
 ```
 
 
-3. **Download the Model:**
-The code will automatically download `yolov8n.pt` on the first run.
 
----
-
-## 💻 Usage
-
-Run the main script to start the robot's "viewfinder":
+### Running the Robot
 
 ```bash
 python robot_main.py
 
 ```
 
-### How it works:
-
-1. **Scanning:** Blue boxes identify all detected objects.
-2. **Locked:** A Red box identifies the "Primary Target."
-3. **Capture:** After 5 seconds, the robot crops the target and generates a side-by-side comparison of the raw footage vs. the cartoon output.
-4. **Exit:** Press `q` to quit the live feed, or any key to close the final output window.
+* **Scanning Phase:** The robot identifies all objects (Blue Boxes).
+* **Locked Phase:** The highest-scoring object is highlighted (Red Box).
+* **Capture:** After 5 seconds, the robot captures the ROI (Region of Interest) and displays the side-by-side cartoon result.
+* **Exit:** Press `q` to quit or any key to close the final output.
 
 ---
-
-## 🧪 Technical Logic
-
-The robot uses a scoring algorithm to choose its target: **Score = Area/(Distance from center + 1)**
-
-This ensures that the robot ignores background noise and focuses on the subject directly in front of it.
-
 
